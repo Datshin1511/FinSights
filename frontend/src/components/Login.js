@@ -35,6 +35,7 @@ const Login = () => {
           Sign in with Facebook
         </button>
       </div>
+      <p className='h6 text-center text-secondary'>Not registered? <a href='/register' className='links'>Click here</a> to register now!</p>
     </div>
   )
 }

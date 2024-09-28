@@ -7,10 +7,14 @@ const Headers = () => {
     window.open("http://localhost:3000/login", "_self")
   }
 
+  const homeWindow = () => {
+    window.open("http://localhost:3000/", "_self")
+  }
+
   return (
     <nav className='navbar py-2 px-3'>
       <div className='navbar-title'>
-        <img src='/FinSights.png' alt='finsights.png' />
+        <img src='/FinSights.png' alt='finsights.png' onClick={homeWindow}/>
         <p>FinSights Corp.</p>
       </div>
 
