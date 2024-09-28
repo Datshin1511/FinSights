@@ -8,7 +8,7 @@ const Login = () => {
   }
 
   const loginWithFacebook = () => {
-    // Facebook callback API
+    window.open("http://localhost:5000/auth/facebook/callback", "_self")
   }
 
   return (
