@@ -43,7 +43,8 @@ passport.use(
     async(accessToken,refreshToken,profile,done)=>{
         try {
             console.log("Profile details: ", profile)
-
+            
+            // Sample MySQL connection check check
             const [rows] = await pool.query('SELECT * FROM companies')
 
             console.log(rows)
