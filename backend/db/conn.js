@@ -1,16 +1,13 @@
-import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import mysql from 'mysql2/promise'
 
-dotenv.config()
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'QcT->220124>>hertech',
+    database: 'finsights_db',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+})
 
-const DB = process.env.DATABASE
-
-mongoose.connect(process.env.DATABASE).then(() => {
-
-    console.log("Database connection succeeded!")
-
- }).catch((err) => {
-
-    console.log("Error: ", err)
-    
- })
+export default pool
