@@ -1,5 +1,7 @@
 .navbar{
     background: #00054d;
+
+    position: sticky;
 }
 
 .navbar-title{
