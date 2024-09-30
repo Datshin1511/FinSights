@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Error from './components/Error'
 import Register from './components/Register'
 import About from './components/About'
+import Footer from './components/Footer'
 
 import './styles/App.css';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='*' element={<Error />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
