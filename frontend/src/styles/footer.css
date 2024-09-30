@@ -1,0 +1,23 @@
+.footer-main-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 3em
+}
+
+.footer-details {
+    display: flex;
+
+    font-size: medium;
+    font-weight: 300;
+}
+
+.footer-details > ul, li {
+    list-style: none;
+    margin: 1em;
+}
+
+.footer-monitoring {
+    display: flex;
+}
