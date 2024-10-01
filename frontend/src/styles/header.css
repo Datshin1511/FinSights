@@ -24,12 +24,10 @@
     font-weight: 20em;
 }
 
-.login-div > a{
+ .login-div > a{
+    min-width: auto;
     margin: 0em 1em;
     text-decoration: none;
     color: rgb(0, 255, 242);
 }
 
-#login-button {
-    width: 6.5em;
-}

@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react'
 import '../styles/header.css'
 
-const Headers = () => {
+const Header = () => {
 
   const loginWindow = () => {
     window.open("http://localhost:3000/login", "_self")
@@ -29,14 +30,14 @@ const Headers = () => {
       </div>
 
       <div className='login-div'>
-        <button id='login-button' className='btn btn-outline-warning px-4 mx-2' onClick={loginWindow}>
+        <a id='login-button' href='#' onClick={loginWindow}>
           {oscillate ? 'Login' : 'Register'}
-        </button>
-        <a href='/about' className=''>About</a>
+        </a>
+        <a href='/about'>About</a>
       </div>
-
     </nav>
+
   )
 }
 
-export default Headers
+export default Header

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/footer.css'
 
 const Footer = () => {
+
+  // const h6 = document.querySelector("h6")
+
+  // h6.innerHTML = (window.innerWidth < 1000) ? ('Designed & Maintained by..') : ('Designed & Maintained by Datshin Rajesh <sup>&trade;</sup> 2024-2025. All rights reserved.')
+
   return (
     <footer>
 
@@ -29,7 +34,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <h6 className='my-3 text-secondary'>Designed & Maintained by Datshin Rajesh <sup>&trade;</sup> 2024-2025. All rights reserved.</h6>
+      <h6 className='my-3 text-secondary'>&copy; 2024-2025. Designed & Maintained by Datshin Rajesh.</h6>
 
     </footer>
   )
