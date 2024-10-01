@@ -14,7 +14,7 @@ import './styles/App.css';
 function App() {
   return (
     <>
-      <Header className='header-content'/>
+      <Header/>
 
       <section className='main-content'>
         <Routes>
@@ -26,8 +26,8 @@ function App() {
             <Route path='*' element={<Error />} />
         </Routes>
       </section>
-          
-      <Footer className='footer-content' />  
+
+      <Footer /> 
     </>
   );
 }
