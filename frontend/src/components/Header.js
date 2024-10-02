@@ -23,7 +23,7 @@ const Header = () => {
         setVisible(true)
       }, 1000)
 
-    }, 5000)
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [])
@@ -49,7 +49,7 @@ const Header = () => {
             (true) ? (
               <>
                 <li><a href='/dashboard'>Dashboard</a></li>
-                <li><a href='/results'>Results</a></li>
+                <li><a href='/history'>History</a></li>
               </>
             ) : ( <></> )
           }
