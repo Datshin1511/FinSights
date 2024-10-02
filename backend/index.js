@@ -7,6 +7,8 @@ import facebook from 'passport-facebook'
 import cors from 'cors'
 
 import pool from './db/conn.js'
+import userRouter from './routes/userRoutes.js'
+import queryRouter from './routes/queryRoutes.js'
 
 dotenv.config()
 
@@ -18,12 +20,14 @@ const PORT = process.env.PORT || 3000
 // EXPRESS UTILITIES
 
 app.use(cors({
-    origin: process.env.BACKEND_BASE_URL,
+    origin: process.env.FRONTEND_BASE_URL,
     methods: 'GET, POST, PUT, DELETE',
     credentials: true
 }))
 
 app.use(express.json())
+
+app.use(express.urlencoded({extended: true}))
 
 app.use(session({
     secret: process.env.SECRET_KEY,
@@ -34,6 +38,9 @@ app.use(session({
 app.use(passport.initialize())
 
 app.use(passport.session())
+
+app.use('/user', userRouter)
+app.use('/finsights', queryRouter)
 
 // Google passport
 passport.use(
@@ -111,21 +118,30 @@ app.get("/auth/facebook/callback",passport.authenticate("facebook",{
     failureRedirect:`${process.env.FRONTEND_BASE_URL}/login}`
 }))
 
-// app.get("/login/sucess",async(req,res)=>{
+// app.post('/search-company', async (req, res) => {
+//     const searchQuery = req.body.search
 
-//     if(req.user){
-//         res.status(200).json({message:"User Login",user:req.user})
-//     }else{
-//         res.status(400).json({message:"Not Authorized"})
+//     console.log(searchQuery)
+
+//     const sql = `SELECT * FROM companies WHERE name LIKE ?`
+
+//     try{
+//         const [rows] = await pool.query(`SELECT * FROM company WHERE name LIKE ?`, [`%${searchQuery}%`]);
+
+//         console.log(rows)
+
+//         if (rows.length > 0) {
+//             return res.status(200).json(rows);
+//         } 
+//         else {
+//             return res.status(404).send('No companies found');
+//         }
+//     }
+//     catch(error){
+//         console.error(error);
+//         return res.status(500).send('Server error');
 //     }
 // })
-
-app.get("/logout",(req,res,next)=>{
-    req.logout(function(err){
-        if(err){return next(err)}
-        res.redirect(process.env.FRONTEND_BASE_URL);
-    })
-})
 
 // LISTENING
 
