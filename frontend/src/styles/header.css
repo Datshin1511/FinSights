@@ -1,3 +1,7 @@
+#company-name {
+    font-weight: 500;
+}
+
 .navbar{
     background: #00054d;
 
@@ -24,10 +28,18 @@
     font-weight: 20em;
 }
 
- .login-div > a{
+.animated-text {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .animated-text.visible {
+    opacity: 1;
+  }
+
+ li > a{
     min-width: auto;
-    margin: 0em 1em;
     text-decoration: none;
-    color: rgb(0, 255, 242);
+    color: rgb(255, 255, 255);
 }
 

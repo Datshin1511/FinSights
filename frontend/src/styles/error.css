@@ -1,0 +1,12 @@
+.error-page {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 3em);
+}
+
+.error-page > h4 {
+    font-size: xx-large;
+    font-weight: lighter;
+}

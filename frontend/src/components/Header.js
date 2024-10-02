@@ -13,11 +13,17 @@ const Header = () => {
   }
   
   const [oscillate, oscillator] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      oscillator(oscillate => !oscillate)
-    }, 1500)
+      setVisible(false)
+      setTimeout(() => {
+        oscillator(oscillate => !oscillate)
+        setVisible(true)
+      }, 1000)
+
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [])
@@ -26,14 +32,31 @@ const Header = () => {
     <nav className='navbar py-2 px-3'>
       <div className='container-md-6 navbar-title'>
         <img src='/FinSights.png' alt='finsights.png' onClick={homeWindow}/>
-        <p>FinSights Corp.</p>
+        <p id='company-name'>FinSights Corp.</p>
       </div>
 
       <div className='login-div'>
-        <a id='login-button' href='#' onClick={loginWindow}>
-          {oscillate ? 'Login' : 'Register'}
-        </a>
-        <a href='/about'>About</a>
+        <ul className='d-flex list-none'>
+          <li>
+            <a id='login-button' href='#' onClick={loginWindow}>
+              <span className={`animated-text ${visible ? 'visible' : ''}`}>
+                {oscillate ? 'Login' : 'Register'}
+              </span>
+            </a>
+          </li>
+
+          {
+            (true) ? (
+              <>
+                <li><a href='/dashboard'>Dashboard</a></li>
+                <li><a href='/results'>Results</a></li>
+              </>
+            ) : ( <></> )
+          }
+
+          <li><a href='/about'>About</a></li>
+
+        </ul>
       </div>
     </nav>
 
