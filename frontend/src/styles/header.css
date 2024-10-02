@@ -30,7 +30,7 @@
 
 .animated-text {
     opacity: 0;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 1s ease-in-out;
   }
   
   .animated-text.visible {
@@ -41,5 +41,11 @@
     min-width: auto;
     text-decoration: none;
     color: rgb(255, 255, 255);
+}
+
+li > a:hover {
+    color: rgb(0, 94, 255);
+
+    transition: 0.3s ease-in;
 }
 

@@ -12,9 +12,12 @@
     padding: 2em;
 }
 
+.login-container {
+    margin: 0em;
+}
+
 .login-options {
     display: flex;
-    justify-content: center;
 
     margin-bottom: 1em;
 }
