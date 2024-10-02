@@ -35,6 +35,7 @@ app.use(passport.initialize())
 
 app.use(passport.session())
 
+// Google passport
 passport.use(
     new OAuth2Strategy4Google({
         clientID: process.env.GOOGLE_CLIENT_ID,
@@ -60,6 +61,7 @@ passport.use(
     )
 )
 
+// Facebook passport
 passport.use(
     new OAuth2Strategy4Facebook({
         clientID: process.env.FACEBOOK_CLIENT_ID,
