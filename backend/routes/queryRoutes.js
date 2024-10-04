@@ -7,20 +7,25 @@ dotenv.config()
 
 const router = express.Router()
 
-router.post('/search-company', async (req, res) => {
-    const searchQuery = req.body.search
+router.get('/search-company', async (req, res) => {
+    const searchQuery = req.query.search
 
-    console.log(searchQuery)
-
-    const sql = `SELECT * FROM companies WHERE name LIKE ?`
+    const companySearchQuery = `SELECT * FROM company WHERE name LIKE ?`
+    const distinctCompanyNameQuery = 'SELECT DISTINCT * FROM company WHERE name LIKE ?'
 
     try{
-        const [rows] = await pool.query(`SELECT * FROM company WHERE name LIKE ?`, [`%${searchQuery}%`]);
+        const [rows] = await pool.query(companySearchQuery, `%${searchQuery}%`);
+        const [distinctCompanies] = await pool.query(distinctCompanyNameQuery, `%${searchQuery}%`)
 
-        console.log(rows)
+        const data = {
+            rows: rows,
+            distinctCompanies: distinctCompanies
+        }
+
+        console.log(data)
 
         if (rows.length > 0) {
-            return res.status(200).json(rows);
+            return res.status(200).json(data);
         } 
         else {
             return res.status(404).send('No companies found');
@@ -31,5 +36,7 @@ router.post('/search-company', async (req, res) => {
         return res.status(500).send('Server error');
     }
 })
+
+router.post('/')
 
 export default router

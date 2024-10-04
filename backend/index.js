@@ -52,14 +52,39 @@ passport.use(
     },
     async(accessToken,refreshToken,profile,done)=>{
         try {
-            console.log("Profile details: ", profile)
-            
-            // Sample MySQL connection check check
-            const [rows] = await pool.query('SELECT * FROM companies')
+            const existingUserQuery = "SELECT * FROM user_profile WHERE user_id = ?"
 
-            console.log(rows)
+            const [rows] = await pool.query(existingUserQuery, [profile.id])
 
-            return done(null, rows)
+            let user;
+
+            if (rows.length > 0){
+                user = rows[0]
+                console.log("Existing user found!", user)
+            }
+            else{
+                const newUserQuery = `INSERT INTO user_profile(user_id, provider, firstname, lastname, email, photo_url) VALUES(?, ?, ?, ?, ?, ?)`
+                const [result] = await pool.query(newUserQuery, [
+                    profile.id,
+                    profile.provider,
+                    profile.given_name,
+                    profile.family_name,
+                    profile.email,
+                    profile.picture
+                ])
+
+                user = {
+                    id: result.insertId,
+                    google_id: profile.id,
+                    name: profile.displayName, 
+                    email: profile.emails[0].value,
+                    profile_picture: profile.photos[0].value
+                }
+
+                console.log("New user created: ", user)
+            }           
+
+            return done(null, user)
 
         } catch (error) {
             return done(error,null)
@@ -80,8 +105,7 @@ passport.use(
         try {
             console.log("Profile details: ", profile)
             
-            // Sample MySQL connection check check
-            const [rows] = await pool.query('SELECT * FROM companies')
+            const [rows] = await pool.query('SELECT * FROM company')
 
             console.log(rows)
 
@@ -103,12 +127,11 @@ passport.deserializeUser((user, done)=>{
 })
 
 // ROUTES
-
 app.get("/auth/google", passport.authenticate("google",{scope:["profile","email"]}));
 
 app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:`${process.env.FRONTEND_BASE_URL}/dashboard`,
-    failureRedirect:`${process.env.FRONTEND_BASE_URL}/login}`
+    failureRedirect:`${process.env.FRONTEND_BASE_URL}/error}`
 }))
 
 app.get("/auth/facebook", passport.authenticate("facebook",{scope:["profile","email"]}))
@@ -118,33 +141,7 @@ app.get("/auth/facebook/callback",passport.authenticate("facebook",{
     failureRedirect:`${process.env.FRONTEND_BASE_URL}/login}`
 }))
 
-// app.post('/search-company', async (req, res) => {
-//     const searchQuery = req.body.search
-
-//     console.log(searchQuery)
-
-//     const sql = `SELECT * FROM companies WHERE name LIKE ?`
-
-//     try{
-//         const [rows] = await pool.query(`SELECT * FROM company WHERE name LIKE ?`, [`%${searchQuery}%`]);
-
-//         console.log(rows)
-
-//         if (rows.length > 0) {
-//             return res.status(200).json(rows);
-//         } 
-//         else {
-//             return res.status(404).send('No companies found');
-//         }
-//     }
-//     catch(error){
-//         console.error(error);
-//         return res.status(500).send('Server error');
-//     }
-// })
-
 // LISTENING
-
 app.listen(PORT, ()=>{
     console.log("The application is listening on port:", PORT)
 })

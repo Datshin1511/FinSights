@@ -23,10 +23,10 @@ const Login = () => {
   }
 
   return (
-    <div className='login-container container-fluid row'>
-      <div className='col-7 scontainer-md bg-warning'></div>
+    <div className='login-home-container d-flex flex-row row'>
+      <div className='col-lg-8 col-md-8 col-sm bg-warning p-0 m-0'></div>
 
-      <div className='container login-form col-4'>
+      <div className='d-flex col-lg-4 col-md-4 login-form'>
         <form className='form-control d-flex flex-column' onSubmit={handleLogin}>
           <div className="form-group my-2">
             <label for="user-email-address">Email address</label>
@@ -53,22 +53,25 @@ const Login = () => {
               placeholder="Password" />
           </div>
           <div className='d-flex justify-content-center my-2'>
-            <button type="submit" className="btn btn-outline-success px-3 w-25 text-center">Login</button>
+            <button type="submit" className="btn btn-outline-success px-3 text-center">Login</button>
           </div>
         </form>
         <hr />
-        <div className='container-md-6 login-options'>
-          <button type='submit' className='btn btn-primary m-2' onClick={loginWithGoogle}>
-            <div className='d-flex flex-direction-column'>
-              <span><img src='https://e7.pngegg.com/pngimages/114/607/png-clipart-g-suite-pearl-river-middle-school-google-software-suite-email-sign-up-button-text-logo.png' width='50px' alt='google_logo.png' /></span>
-              <p>Sign in with Google</p>
+        <div className='container-md-6 container-sm-4 d-flex flex-column'>
+          <button type='submit' className='btn btn-outline-secondary m-2 p-2' onClick={loginWithGoogle}>
+            <div className='d-flex align-items-center justify-content-center'>
+              <img src='./google_logo.png' className='d-block mx-2' alt='google_logo.png' />
+              <p className='m-0 p-0'>Sign in with Google</p>
             </div>
           </button>
-          <button type='submit' className='btn btn-outline-primary px-3 m-2' onClick={loginWithFacebook}>
-            Sign in with Facebook
+          <button type='submit' className='btn btn-outline-secondary m-2 p-2' onClick={loginWithFacebook}>
+            <div className='d-flex align-items-center justify-content-center'>
+              <img src='./facebook_logo.png' className='d-block mx-2' alt='facebook_logo.png' />
+              <p className='m-0 p-0'>Sign in with Facebook</p>
+            </div>
           </button>
         </div>
-        <p className='h6 text-center text-secondary'>Not registered? <a href='/register' className='links'>Click here</a> to register now!</p>
+        <p className='h6 text-center my-5 text-secondary'>Not registered? <a href='/register' className='links'>Click here</a> to register now!</p>
       </div>
     </div>
   )
