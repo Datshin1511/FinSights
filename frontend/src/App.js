@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Home from './components/Home'
-import Header from './components/Header'
-import Dashboard from './components/Dashboard'
-import Login from './components/Login'
-import Error from './components/Error'
-import Register from './components/Register'
-import About from './components/About'
-import Footer from './components/Footer'
+import Home from './pages/Home'
+import Header from './pages/Header'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import Error from './pages/Error'
+import Register from './pages/Register'
+import About from './pages/About'
+import Footer from './pages/Footer'
 
 import './styles/App.css';
 

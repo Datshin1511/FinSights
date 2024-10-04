@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [companies, setCompanies] = useState([]) 
   const [distinctCompanies, setDistinctCompanies] = useState([]) 
   const [selectedCompany, setSelectedCompany] = useState();
+  
   let [visible, setVisible] = useState(false)
 
   const handleSubmit = async (e) => {
