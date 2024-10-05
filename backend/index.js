@@ -1,5 +1,7 @@
 import express from 'express'
 import session from 'express-session'
+import jwt from 'jsonwebtoken'
+import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import passport from 'passport'
 import google from 'passport-google-oauth2'
@@ -24,6 +26,8 @@ app.use(cors({
     methods: 'GET, POST, PUT, DELETE',
     credentials: true
 }))
+
+app.use(cookieParser())
 
 app.use(express.json())
 
