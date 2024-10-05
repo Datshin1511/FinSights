@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [companies, setCompanies] = useState([]) 
   const [distinctCompanies, setDistinctCompanies] = useState([]) 
-  const [selectedCompany, setSelectedCompany] = useState();
+  const [selectedCompanyId, setSelectedCompanyId] = useState(null);
   
   let [visible, setVisible] = useState(false)
 
@@ -38,6 +38,30 @@ const Dashboard = () => {
 
   }
 
+  const handleClick = async (id) => {
+    setSelectedCompanyId(id);
+
+    try{
+      let res = await axios.get(`http://localhost:5000/finsights/no-of-companies`, {
+        params: {
+          id: id
+        }
+      })
+
+      res = await axios.get(`http://localhost:5000/finsights/company-stats`, {
+        params: {
+          id: id
+        }
+      })
+    }
+    catch(err){
+      console.log("Error: ",  err)
+    }
+
+  }
+
+  let selectedCompanies = companies.find(company => company.id === selectedCompanyId)
+
   return (
     <div className='row py-1 px-3'>
       <div className='search-panel container col-lg-4 col-md-4 col-sm p-2'>
@@ -57,13 +81,15 @@ const Dashboard = () => {
           </button>
         </form>
 
-        {/* Display Panel */}
-        <div className='company-results container-fluid py-3 mt-1 bg-secondary rounded'>
-          {(visible) ? <p className='fst-italic text-white text-start'>Unique matches found: {distinctCompanies.length}</p> : (<></>)}
+        {/* Query Results Panel */}
+        <div className='company-results container-fluid p-3 mt-1 bg-secondary rounded'>
+          {(visible) ? <p className='fst-italic text-white text-center'>Matches found: {distinctCompanies.length}</p> : (<></>)}
           <ul className='scroll-view'>
           {distinctCompanies.map(distinctCompany => ( 
-                <li key={distinctCompany.id} className='m=0 p-0'>
-                  <button className='btn btn-outline-warning'><p><strong>{distinctCompany.name}</strong>, {distinctCompany.country}</p></button>
+                <li key={distinctCompany.id} className='m-0 p-0 d-flex flex-column justify-content-center'>
+                  <button 
+                    className='btn btn-outline-warning py-2 px-4'
+                    onClick={() => handleClick(distinctCompany.id)}><p className='m-0'><strong>{distinctCompany.name}</strong>, {distinctCompany.country}</p></button>
                   <hr />
                 </li>
               ))}
@@ -80,26 +106,19 @@ const Dashboard = () => {
         </div>
       </div>
 
-        {/* Detailed Display Panel  */}
-      <div className='result-panel container col-lg col-md bg-black my-2 p-4 rounded'>
+        {/* Computed Results Panel  */}
+      <div className='result-panel container col-lg-8 col-md bg-black my-2 p-4 rounded'>
         <p className='h2 fst-bold text-center text-white d-flex justify-content-center align-items-center'>Computed results</p>
 
-        {companies.length > 0 && ( 
+        {selectedCompanies && ( 
           <div className="company-results">
             <ul className='scroll-view'>
-              {companies.map(company => ( 
-                <li key={company.id}>
-                  { <div class="card text-white bg-primary mb-3">
-                    <div class="card-body">
-                      <h5 class="card-title"><strong>Company Name:</strong> {company.name}</h5>
-                      <p><strong>Country:</strong> {company.country}</p>
-                      <p><strong>Country Code:</strong> {company.country_code}</p>
-                      <p><strong>Market capitalization:</strong> $ {company.market_cap}</p>
-                      <p><strong>Diversity:</strong> {company.diversity}%</p>
-                    </div>
-                  </div> }
-                </li>
-              ))}
+              <li>ID: {selectedCompanies.id}</li>
+              <li>Name: {selectedCompanies.name}</li>
+              <li>Country: {selectedCompanies.country}</li>
+              <li>Country code: {selectedCompanies.country_code}</li>
+              <li>Market cap: $ {selectedCompanies.market_cap}</li>
+              <li>Diversity: {selectedCompanies.diversity}%</li>
             </ul>
           </div>
         )}

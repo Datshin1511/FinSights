@@ -6,6 +6,11 @@ const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [oscillate, oscillator] = useState(true);
   const [visible, setVisible] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    
+  })
 
   const loginWindow = () => {
     window.open("http://localhost:3000/login", "_self");

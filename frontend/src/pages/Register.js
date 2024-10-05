@@ -29,7 +29,7 @@ const Register = () => {
       
       <div className='d-flex col-lg-4 col-md-4 align-items-center login-form'>
         <Title text='Sign up for a new account.'/>
-        <p>Get started with our app, just create an account and enjoy the experience.</p>
+        <p className='text-center'>Get started with our app, just create an account and enjoy the experience.</p>
         <form className='form-control d-flex flex-column' onSubmit={handleSignUp}>
           <div className="form-group my-2">
             <label for="user-email-address">Email address</label>
@@ -74,7 +74,7 @@ const Register = () => {
             </div>
           </button>
         </div>
-        <p className='h6 text-center my-5 text-secondary'>Registered already? <a href='/register' className='links'>Click here</a> to login now!</p>
+        <p className='h6 text-center my-5 text-secondary'>Registered already? <a href='/login' className='links'>Click here</a> to login now!</p>
       </div>
     </div>
   )

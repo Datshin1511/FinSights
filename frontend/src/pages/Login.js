@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import '../styles/login.css'
-import HorizontalLine from '../components/HorizontalLine'
 import Title from '../components/Title'
 
 const Login = () => {
@@ -26,11 +25,11 @@ const Login = () => {
 
   return (
     <div className='login-home-container d-flex flex-row row'>
-      <div className='col-lg-8 col-md-8 col-sm bg-warning p-0 m-0'></div>
+      <div className='col-lg-8 col-md col-sm bg-warning p-0 m-0'></div>
 
-      <div className='d-flex col-lg-4 col-md-4 login-form'>
+      <div className='d-flex col-lg-4 col-md-6 col-sm login-form'>
         <Title text='Login to your account.'/>
-        
+        <p className='text-center'>Login to view your dashboard and obtain various insights.</p>
         <form className='form-control d-flex flex-column' onSubmit={handleLogin}>
           <div className="form-group my-2">
             <label for="user-email-address">Email address</label>
@@ -74,7 +73,10 @@ const Login = () => {
             </div>
           </button>
         </div>
-        <p className='h6 text-center my-5 text-secondary'>Not registered? <a href='/register' className='links'>Click here</a> to register now!</p>
+        <div className='my-4'>
+          <p className='h6 text-center my-2 text-secondary'>Forgot password? <a href='/reset-password' className='links'>Click here</a> to reset.</p>
+          <p className='h6 text-center my-2 text-secondary'>Not registered? <a href='/register' className='links'>Click here</a> to register now!</p>
+        </div>
       </div>
     </div>
   )
