@@ -22,8 +22,6 @@ router.get('/search-company', async (req, res) => {
             distinctCompanies: distinctCompanies
         }
 
-        console.log(data)
-
         if (rows.length > 0) {
             return res.status(200).json(data);
         } 

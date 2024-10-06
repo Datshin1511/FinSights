@@ -14,6 +14,15 @@ router.post('/sign-in', (req, res) => {
     })
 })
 
+router.get('/auth-status', (req, res) => {
+  if (req.isAuthenticated()) {
+      console.log(req.user)
+      return res.status(200).json({ isAuthenticated: true, username: req.user.fullname });
+  } else {
+      return res.status(200).json({ isAuthenticated: false, user: '' });
+  }
+});
+
 router.get("/sign-out",(req,res,next)=>{
     req.logout(function(err){
         if(err){return next(err)}
@@ -30,7 +39,7 @@ router.post('/sign-up', (req, res) => {
     })
 })
 
-router.post('/user/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     req.logout((err) => {
       if (err) {
         return res.status(500).send({ message: 'Error logging out' });
