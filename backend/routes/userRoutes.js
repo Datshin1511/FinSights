@@ -19,7 +19,7 @@ router.get('/auth-status', (req, res) => {
       console.log(req.user)
       return res.status(200).json({ isAuthenticated: true, username: req.user.fullname });
   } else {
-      return res.status(200).json({ isAuthenticated: false, user: '' });
+      return res.status(200).json({ isAuthenticated: false, user: 'Default user' });
   }
 });
 
