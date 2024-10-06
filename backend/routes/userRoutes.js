@@ -30,5 +30,18 @@ router.post('/sign-up', (req, res) => {
     })
 })
 
+router.post('/user/logout', (req, res) => {
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).send({ message: 'Error logging out' });
+      }
+      req.session.destroy(() => {
+        res.clearCookie('connect.sid'); // Clear session cookie
+        res.status(200).send({ message: 'Logged out successfully' });
+      });
+    });
+  });
+  
+
 
 export default router
