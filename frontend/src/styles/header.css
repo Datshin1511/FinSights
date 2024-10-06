@@ -1,4 +1,6 @@
 #company-name {
+    color: white;
+    font-size: 2.5em;
     font-weight: 500;
 }
 
@@ -22,12 +24,6 @@
     margin: 1em 1em;
 }
 
-.navbar-title > p {
-    color: white;
-    font-size: 2.5em;
-    font-weight: 20em;
-}
-
 .navbar {
     background-color: #00172e; /* Custom background color */
   }
@@ -41,17 +37,16 @@
     color: #157fff;
   }
   
-  .navbar-toggler {
-    border-color: white;
-    color: #ecf0f1;
+  .navbar-dark .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.474);
   }
   
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28236, 240, 241, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
 
 .animated-text {
-    opacity: 0;
+    opacity: 0.5;
     transition: opacity 1s ease-in-out;
   }
   
