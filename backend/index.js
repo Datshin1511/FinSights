@@ -1,6 +1,7 @@
 import express from 'express'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
+import passport from 'passport'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
@@ -30,6 +31,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Routes setup
 app.use('/user', userRouter)
