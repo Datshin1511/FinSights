@@ -8,11 +8,13 @@ const Header = () => {
   const [oscillate, oscillator] = useState(true);
   const [visible, setVisible] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       const response = await axios.get('http://localhost:5000/user/auth-status', { withCredentials: true });
       setIsAuthenticated(response.data.isAuthenticated);
+      setUsername(response.data.username)
     };
 
     checkAuthStatus();
@@ -28,7 +30,7 @@ const Header = () => {
 
   const logout = async () => {
     await axios.post('http://localhost:5000/user/logout', {}, { withCredentials: true });
-    window.open("http://localhost:3000/", "_self"); // Redirect to home after logout
+    window.open("http://localhost:3000/", "_self");
   };
 
   useEffect(() => {
@@ -44,11 +46,12 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className='navbar navbar-expand-lg p-0'>
+    <nav className='navbar navbar-expand-lg p-0 navbar-dark'>
       <div className='container-fluid'>
         <div className='navbar-title d-flex align-items-center'>
           <img src='/FinSights.png' alt='finsights.png' width={'30px'} height={'30px'} onClick={homeWindow} style={{ cursor: 'pointer' }} />
-          <p id='company-name' className='mb-0 ms-2'>FinSights Corp.</p>
+          <p id="company-name" className='mb-0 ms-2'>FinSights Corp.</p>
+          {isAuthenticated ? <p>Welcome, {username}</p> : <></>}
         </div>
 
         <button
