@@ -63,11 +63,11 @@ const Dashboard = () => {
   let selectedCompanies = companies.find(company => company.id === selectedCompanyId)
 
   return (
-    <div className='row py-1 px-3'>
+    <div className='row m-3 py-3'>
       <div className='search-panel container col-lg-4 col-md-4 col-sm p-2'>
 
         {/* Search Button */}
-        <form className="form-inline my-lg-0 d-flex flex-direction-column" onSubmit={handleSubmit}>
+        <form className="form-inline my-lg-0 mb-3 d-flex flex-direction-column" onSubmit={handleSubmit}>
           <input 
             className="form-control mr-sm-2" 
             type="search" 
@@ -76,13 +76,13 @@ const Dashboard = () => {
             aria-label="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} />
-          <button className="btn btn-outline-success my-2 my-sm-0 mx-1" type="submit">
+          <button className="btn btn-outline-success my-2 my-sm-0 ms-2" type="submit">
             <Icon.Search className='ml-4' />
           </button>
         </form>
 
         {/* Query Results Panel */}
-        <div className='company-results container-fluid p-3 mt-1 bg-secondary rounded'>
+        <div className='company-results container-fluid p-3 mt-3 bg-secondary rounded'>
           {(visible) ? <p className='fst-italic text-white text-center'>Matches found: {distinctCompanies.length}</p> : (<></>)}
           <ul className='scroll-view'>
           {distinctCompanies.map(distinctCompany => ( 
