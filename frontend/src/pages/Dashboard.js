@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as Icon from 'react-bootstrap-icons'
 import '../styles/dashboard.css'
@@ -9,8 +10,26 @@ const Dashboard = () => {
   const [companies, setCompanies] = useState([]) 
   const [distinctCompanies, setDistinctCompanies] = useState([]) 
   const [selectedCompanyId, setSelectedCompanyId] = useState(null);
+  const navigate = useNavigate()
   
   let [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/user/auth-status', { withCredentials: true})
+        if(!res.data.isAuthenticated){
+          navigate('/login')
+        }
+      }
+      catch(err){
+        console.log("Error: ", err)
+        navigate('/login')
+      }
+    }
+
+    checkAuthStatus();
+  }, [navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
