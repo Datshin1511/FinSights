@@ -1,3 +1,5 @@
+// src/pages/Dashboard.js
+
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -17,13 +19,14 @@ const Dashboard = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/user/auth-status', { withCredentials: true})
+        const res = await axios.get('http://localhost:5000/user/auth-status', { withCredentials: true })
         if(!res.data.isAuthenticated){
+          alert("User not authenticated!")
           navigate('/login')
         }
       }
       catch(err){
-        console.log("Error: ", err)
+        alert("Error: ", err)
         navigate('/login')
       }
     }
@@ -38,7 +41,8 @@ const Dashboard = () => {
       const res = await axios.get('http://localhost:5000/finsights/search-company', {
           params: {
             search: searchTerm
-          }
+          },
+          withCredentials: true // 🔄 Added: Include credentials if needed
         }
       )
 
@@ -64,13 +68,15 @@ const Dashboard = () => {
       let res = await axios.get(`http://localhost:5000/finsights/no-of-companies`, {
         params: {
           id: id
-        }
+        },
+        withCredentials: true // 🔄 Added: Include credentials if needed
       })
 
       res = await axios.get(`http://localhost:5000/finsights/company-stats`, {
         params: {
           id: id
-        }
+        },
+        withCredentials: true // 🔄 Added: Include credentials if needed
       })
     }
     catch(err){
@@ -83,7 +89,7 @@ const Dashboard = () => {
 
   return (
     <div className='row m-3 py-3'>
-      <div className='search-panel container col-lg-4 col-md-4 col-sm p-2'>
+      <div className='search-panel container col-lg-4 col-md-6 col-sm p-2'>
 
         {/* Search Button */}
         <form className="form-inline my-lg-0 mb-3 d-flex flex-direction-column" onSubmit={handleSubmit}>
@@ -94,7 +100,9 @@ const Dashboard = () => {
             placeholder="Search a company.." 
             aria-label="search"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} />
+            onChange={(e) => setSearchTerm(e.target.value)} 
+            required // 🔄 Added: make search required
+          />
           <button className="btn btn-outline-success my-2 my-sm-0 ms-2" type="submit">
             <Icon.Search className='ml-4' />
           </button>

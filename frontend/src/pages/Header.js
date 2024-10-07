@@ -49,9 +49,8 @@ const Header = () => {
     <nav className='navbar navbar-expand-lg p-0 navbar-dark'>
       <div className='container-fluid'>
         <div className='navbar-title d-flex align-items-center'>
-          <img src='/FinSights.png' alt='finsights.png' width={'30px'} height={'30px'} onClick={homeWindow} style={{ cursor: 'pointer' }} />
+          <img src='/images/FinSights.png' alt='finsights.png' width={'30px'} height={'30px'} onClick={homeWindow} style={{ cursor: 'pointer' }} />
           <p id="company-name" className='mb-0 ms-2'>FinSights Corp.</p>
-          {isAuthenticated ? <p>Welcome, {username}</p> : <></>}
         </div>
 
         <button
@@ -67,16 +66,22 @@ const Header = () => {
 
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id='navbarNav'>
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
+            
             {!isAuthenticated ? (
-              <li className='nav-item'>
-                <a id='login-button' href='#' className='nav-link' onClick={loginWindow}>
-                  <span className={`animated-text ${visible ? 'visible' : ''}`}>
-                    {oscillate ? 'Login' : 'Register'}
-                  </span>
-                </a>
-              </li>
+              <>
+                <li className='nav-item'>
+                  <a id='login-button' href='#' className='nav-link' onClick={loginWindow}>
+                    <span className={`animated-text ${visible ? 'visible' : ''}`}>
+                      {oscillate ? 'Login' : 'Register'}
+                    </span>
+                  </a>
+                </li>
+              </>
             ) : (
               <>
+                <li className='nav-item d-flex align-items-center'>
+                  <p className='h4 text-center text-secondary m-0'>Welcome, {username}.</p>
+                </li>
                 <li className='nav-item'>
                   <a className='nav-link' href='/'>Home</a>
                 </li>
