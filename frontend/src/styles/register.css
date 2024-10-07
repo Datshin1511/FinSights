@@ -1,0 +1,122 @@
+/* src/styles/register.css */
+
+/* Container Styling */
+.register-home-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Form Container */
+.register-form {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Title Styling */
+.register-form h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #343a40;
+    text-align: center;
+}
+
+/* Paragraph Styling */
+.register-form p.text-center {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* Input Fields */
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"],
+.register-form input[type="file"] {
+    padding: 12px 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus,
+.register-form input[type="file"]:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Required Field Indicator */
+.required-field {
+    color: #dc3545; /* Bootstrap's danger color for asterisks */
+    margin-left: 2px;
+}
+
+/* Button Styling */
+.register-form button {
+    padding: 12px 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Alert Messages */
+.register-form .alert {
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* OAuth Buttons */
+.register-form .btn-outline-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.register-form .btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+.register-form .btn-outline-secondary img {
+    margin-right: 10px;
+}
+
+/* Links */
+.register-form .links {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-form .links:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .register-home-container .col-lg-8 {
+        display: none;
+    }
+
+    .register-form {
+        box-shadow: none;
+    }
+}

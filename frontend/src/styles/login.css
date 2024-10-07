@@ -1,37 +1,144 @@
-.links {
+/* src/styles/login.css */
+
+/* Container Styling */
+.login-home-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Form Container */
+.login-form {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Title Styling */
+.login-form h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #343a40;
+    text-align: center;
+}
+
+/* Paragraph Styling */
+.login-form p.text-center {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* Input Fields */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    padding: 12px 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Required Field Indicator */
+.required-field {
+    color: #dc3545; /* Bootstrap's danger color for asterisks */
+    margin-left: 2px;
+}
+
+/* Button Styling */
+.login-form button.btn-outline-success {
+    padding: 12px 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #007bff;
+    color: white;
+}
+
+.login-form button.btn-outline-success:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s;
+}
+
+/* Alert Messages */
+.login-form .alert {
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* OAuth Buttons */
+.login-form .btn-outline-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.login-form .btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+.login-form .btn-outline-secondary img {
+    margin-right: 10px;
+}
+
+/* Links */
+.login-form .links {
+    color: #007bff;
     text-decoration: none;
 }
 
-.links:hover {
+.login-form .links:hover {
     color: red;
-
+    text-decoration: underline;
     transition: 0.5s;
 }
 
-.login-form {
-    padding: 2em;
-}
-
-.separator {
-    display: flex;
+/* Resend Note Styling */
+.resendNote {
+    font-size: 0.9em; /* Slightly larger for better readability */
+    color: black;
     width: 100%;
-    height: auto;
-    border: 0;
-    background-color: #e8e8e8;
-  }
-
-.login-home-container {
-    height: 100vh;
-    width: 100%;
-}
-
-.login-options {
-    margin-bottom: 1em;
-}
-
-.login-form {
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.resendBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(127, 129, 255);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .login-home-container .col-lg-8 {
+        display: none;
+    }
+
+    .login-form {
+        box-shadow: none;
+    }
 }
