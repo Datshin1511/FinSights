@@ -10,7 +10,12 @@ import About from './pages/About'
 import Footer from './pages/Footer'
 import History from './pages/History'
 
+import TwoFA from './components/TwoFA'
+import ProtectedRoute from './components/ProtectedRoute'
+
 import './styles/App.css';
+import ForgotPassword from './pages/ForgotPassword'
+import ChangePassword from './pages/ChangePassword'
 
 function App() {
   return (
@@ -21,9 +26,25 @@ function App() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/dashboard' element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
             <Route path='/register' element={<Register />} />
-            <Route path='/history' element={<History />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/forgot-password/:token' element={<ForgotPassword />} />
+            <Route path='/2fa' element={<TwoFA />} />
+            <Route path='/change-password' element={
+              <ProtectedRoute>
+                <ChangePassword />
+              </ProtectedRoute>
+            } />
+            <Route path='/history' element={
+              <ProtectedRoute>
+                <History />
+              </ProtectedRoute>
+            } />
             <Route path='/about' element={<About />} />
             <Route path='*' element={<Error />} />
         </Routes>
