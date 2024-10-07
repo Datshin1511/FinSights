@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import {Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Header from './pages/Header'
@@ -14,7 +14,7 @@ import './styles/App.css';
 
 function App() {
   return (
-    <Router>
+    <>
       <Header/>
 
       <section className='main-content'>
@@ -30,7 +30,7 @@ function App() {
       </section>
 
       <Footer /> 
-    </Router>
+    </>
   );
 }
 
